@@ -1,503 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me | Portfolio</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --surface: #111827;
-      --surface-soft: #1f2937;
-      --text: #e2e8f0;
-      --accent: #38bdf8;
-      --accent-strong: #60a5fa;
-      --border: rgba(148, 163, 184, 0.25);
-      --shadow: 0 24px 80px rgba(15, 23, 42, 0.35);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      min-height: 100%;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 35%),
-                  linear-gradient(180deg, #020617 0%, #0a1225 100%);
-      color: var(--text);
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-
-    .frame {
-      width: min(1120px, 100%);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: rgba(15, 23, 42, 0.95);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      backdrop-filter: blur(16px);
-    }
-
-    .top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 22px 32px;
-      background: rgba(15, 23, 42, 0.88);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      font-size: 1.05rem;
-    }
-
-    .brand .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-    }
-
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.95rem;
-      opacity: 0.78;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    nav a:hover {
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    .content {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 32px;
-      padding: 36px 32px 40px;
-    }
-
-    .profile-card,
-    .details-card {
-      background: rgba(30, 41, 59, 0.9);
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      padding: 32px;
-    }
-
-    .profile-card h1 {
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      line-height: 1.05;
-      margin-bottom: 12px;
-    }
-
-    .profile-card p {
-      line-height: 1.8;
-      color: #cbd5e1;
-      margin-bottom: 26px;
-    }
-
-    .profile-meta {
-      display: grid;
-      gap: 14px;
-    }
-
-    .meta-item {
-      display: grid;
-      gap: 6px;
-    }
-
-    .meta-item span {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #94a3b8;
-      font-size: 0.95rem;
-    }
-
-    .meta-item strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .button-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-width: 160px;
-      padding: 14px 18px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, rgba(56,189,248,0.18), rgba(96,165,250,0.18));
-      color: var(--text);
-      cursor: pointer;
-      transition: transform 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-      border-color: rgba(56, 189, 248, 0.55);
-      background: rgba(56, 189, 248, 0.12);
-    }
-
-    .detail-block {
-      display: grid;
-      gap: 20px;
-    }
-
-    .detail-block h2 {
-      font-size: 1.15rem;
-      margin-bottom: 10px;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      padding: 9px 14px;
-      border-radius: 999px;
-      background: rgba(56, 189, 248, 0.12);
-      color: #dbeafe;
-      font-size: 0.92rem;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 18px;
-      margin-top: 16px;
-    }
-
-    .timeline-item {
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(15, 23, 42, 0.88);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-    }
-
-    .timeline-item time {
-      display: block;
-      margin-bottom: 8px;
-      color: #94a3b8;
-      font-size: 0.9rem;
-    }
-
-    .timeline-item strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--text);
-      font-size: 1rem;
-    }
-
-    .skill {
-      display: grid;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .skill-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .skill-label {
-      color: #cbd5e1;
-      font-size: 0.92rem;
-    }
-
-    .skill-bar {
-      width: 100%;
-      height: 10px;
-      background: rgba(148, 163, 184, 0.12);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .skill-fill {
-      height: 100%;
-      width: 0;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #38bdf8, #60a5fa);
-      transition: width 1s ease;
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .metric-card {
-      padding: 18px;
-      background: rgba(30, 41, 59, 0.9);
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.1);
-      text-align: center;
-    }
-
-    .metric-card strong {
-      display: block;
-      font-size: 1.55rem;
-      margin-bottom: 6px;
-      color: var(--accent);
-    }
-
-    .metric-card span {
-      color: #94a3b8;
-      font-size: 0.95rem;
-    }
-
-    .footer {
-      padding: 20px 32px 26px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      background: rgba(15, 23, 42, 0.88);
-      border-top: 1px solid var(--border);
-    }
-
-    .footer small {
-      color: #94a3b8;
-    }
-
-    .theme-toggle {
-      border: 1px solid rgba(148, 163, 184, 0.18);
-    }
-
-    @media (max-width: 900px) {
-      .content {
-        grid-template-columns: 1fr;
-      }
-
-      .top-bar,
-      .footer {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .button-row {
-        justify-content: flex-start;
-      }
-    }
-
-    @media (max-width: 620px) {
-      .frame {
-        border-radius: 20px;
-      }
-
-      .top-bar,
-      .content,
-      .footer {
-        padding-left: 22px;
-        padding-right: 22px;
-      }
-
-      .profile-card,
-      .details-card {
-        padding: 24px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
 </head>
 <body>
-  <div class="frame">
-    <header class="top-bar">
-      <div class="brand">
-        <span class="dot"></span>
-        <span>Omkar&apos;s Portfolio</span>
-      </div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="project.html">Projects</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </header>
+    /* ===== ABOUT SECTION ===== */
 
-    <section class="content">
-      <article class="profile-card">
-        <h1>About Me</h1>
-        <p>Hi, I&apos;m Omkar — a frontend developer building clean and interactive portfolio experiences with HTML, CSS, and JavaScript. I love making interfaces feel polished, responsive, and easy to use.</p>
+#about{
+    padding:80px 10%;
+    background:#ffffff;
+}
 
-        <div class="profile-meta">
-          <div class="meta-item">
-            <span><strong>Experience</strong> 3+ years</span>
-          </div>
-          <div class="meta-item">
-            <span><strong>Focus</strong> UI, animations, responsive layouts</span>
-          </div>
-          <div class="meta-item">
-            <span><strong>Tools</strong> VS Code, Git, Figma</span>
-          </div>
-        </div>
+.about-content{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+    background:#f8f9fa;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    transition:all 0.3s ease;
+}
 
-        <div class="button-row">
-          <button class="button" id="download-cv">Download CV</button>
-          <button class="button" id="scroll-contact">Contact Me</button>
-          <button class="button theme-toggle" id="toggle-theme">Toggle Theme</button>
-        </div>
-      </article>
+.about-content:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
 
-      <aside class="details-card">
-        <div class="detail-block">
-          <h2>Skills</h2>
-          <div class="skill">
-            <div class="skill-row"><span class="skill-label">HTML &amp; CSS</span><strong>95%</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-percent="95"></div></div>
-          </div>
-          <div class="skill">
-            <div class="skill-row"><span class="skill-label">JavaScript</span><strong>88%</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-percent="88"></div></div>
-          </div>
-          <div class="skill">
-            <div class="skill-row"><span class="skill-label">Responsive Design</span><strong>92%</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-percent="92"></div></div>
-          </div>
-          <div class="skill">
-            <div class="skill-row"><span class="skill-label">UX &amp; Accessibility</span><strong>85%</strong></div>
-            <div class="skill-bar"><div class="skill-fill" data-percent="85"></div></div>
-          </div>
-        </div>
+.about-content h3{
+    font-size:2rem;
+    margin-bottom:20px;
+    color:#00adb5;
+}
 
-        <div class="detail-block">
-          <h2>Recent work</h2>
-          <div class="tag-list">
-            <span class="tag">Portfolio</span>
-            <span class="tag">Landing Page</span>
-            <span class="tag">Dashboard UI</span>
-            <span class="tag">Animation</span>
-          </div>
-        </div>
+.about-content p{
+    font-size:1.1rem;
+    line-height:1.8;
+    color:#555;
+    text-align:justify;
+}
 
-        <div class="detail-block">
-          <h2>Timeline</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <time>2024</time>
-              <strong>Lead Frontend Developer</strong>
-              <p>Designed dashboard UI systems and built responsive experiences for B2B customers.</p>
-            </div>
-            <div class="timeline-item">
-              <time>2023</time>
-              <strong>Freelance Projects</strong>
-              <p>Delivered portfolio websites and interactive landing pages for small businesses.</p>
-            </div>
-            <div class="timeline-item">
-              <time>2022</time>
-              <strong>Web Developer</strong>
-              <p>Focused on accessible, performance-first site builds using modern web standards.</p>
-            </div>
-          </div>
-        </div>
+/* Optional Highlight Text */
 
-        <div class="detail-block metric-grid">
-          <div class="metric-card">
-            <strong>24</strong>
-            <span>Projects completed</span>
-          </div>
-          <div class="metric-card">
-            <strong>12</strong>
-            <span>Clients supported</span>
-          </div>
-          <div class="metric-card">
-            <strong>99%</strong>
-            <span>Positive feedback</span>
-          </div>
-          <div class="metric-card">
-            <strong>5</strong>
-            <span>Years learning</span>
-          </div>
-        </div>
-      </aside>
-    </section>
+.highlight{
+    color:#00adb5;
+    font-weight:bold;
+}
 
-    <footer class="footer">
-      <small>Built with one file: HTML, CSS, and JavaScript in a single frame.</small>
-      <small>© 2026 Omkar</small>
-    </footer>
-  </div>
+/* Responsive */
 
-  <script>
-    const themeToggle = document.getElementById('toggle-theme');
-    const downloadCv = document.getElementById('download-cv');
-    const scrollContact = document.getElementById('scroll-contact');
-    const skillFills = document.querySelectorAll('.skill-fill');
+@media (max-width:768px){
 
-    function setTheme(dark) {
-      const root = document.documentElement;
-      if (dark) {
-        root.style.setProperty('--bg', '#020617');
-        root.style.setProperty('--surface', '#0b1120');
-        root.style.setProperty('--surface-soft', '#111827');
-        root.style.setProperty('--text', '#e2e8f0');
-        root.style.setProperty('--accent', '#38bdf8');
-      } else {
-        root.style.setProperty('--bg', '#f8fafc');
-        root.style.setProperty('--surface', '#ffffff');
-        root.style.setProperty('--surface-soft', '#f8fafc');
-        root.style.setProperty('--text', '#0f172a');
-        root.style.setProperty('--accent', '#3b82f6');
-      }
-      document.body.style.background = dark
-        ? 'radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 35%), linear-gradient(180deg, #020617 0%, #0a1225 100%)'
-        : 'radial-gradient(circle at top, rgba(59, 130, 246, 0.12), transparent 35%), linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%)';
+    .about-content{
+        padding:25px;
     }
 
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.body.dataset.theme !== 'light';
-      document.body.dataset.theme = isDark ? 'light' : 'dark';
-      setTheme(!isDark);
-    });
+    .about-content h3{
+        font-size:1.5rem;
+    }
 
-    downloadCv.addEventListener('click', () => {
-      const link = document.createElement('a');
-      link.href = '#';
-      link.download = 'Omkar_CV.pdf';
-      link.click();
-      alert('CV download started! Replace the link with a real file path when ready.');
-    });
+    .about-content p{
+        font-size:1rem;
+        text-align:left;
+    }
+}
 
-    scrollContact.addEventListener('click', () => {
-      window.location.href = 'contact.html';
-    });
-
-    window.addEventListener('load', () => {
-      skillFills.forEach((fill) => {
-        const percent = fill.dataset.percent;
-        fill.style.width = percent + '%';
-      });
-    });
-  </script>
 </body>
 </html>
